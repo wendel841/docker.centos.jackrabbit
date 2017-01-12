@@ -5,7 +5,12 @@ ENV JACKRABBIT_VERSION=2.14.0
 ENV JACKRABBIT_HOME=/opt/jackrabbit
 RUN mkdir ${JACKRABBIT_HOME}
 WORKDIR ${JACKRABBIT_HOME}
-RUN wget -O http://www.apache.org/dyn/closer.lua/jackrabbit/${JACKRABBIT_VERSION}/jackrabbit-standalone-${JACKRABBIT_VERSION}.jar
+RUN wget -q http://ftp-stud.hs-esslingen.de/pub/Mirrors/ftp.apache.org/dist/jackrabbit/${JACKRABBIT_VERSION}/jackrabbit-standalone-${JACKRABBIT_VERSION}.jar
 EXPOSE 8080
-ENTRYPOINT ["/usr/bin/java"]
-CMD ["-jar", "${JACKRABBIT_HOME}/jackrabbit-standalone.jar"]
+RUN pwd && ls -la
+# use this VOLUME to persist the data
+# VOLUME ${JACKRABBIT_HOME}/jackrabbit
+COPY run.sh /run.sh
+ENTRYPOINT ["/run.sh"]
+CMD ["run"]
+#CMD ["-jar", "${JACKRABBIT_HOME}/jackrabbit-standalone-${JACKRABBIT_VERSION}.jar"]
