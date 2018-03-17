@@ -1,7 +1,7 @@
 #!Dockerfile
 FROM sjatgutzmann/docker.centos.javadev8
 MAINTAINER Sven Jörns <sj.at.gutzmann@gmail.com>
-ENV JACKRABBIT_VERSION=2.14.0
+ENV JACKRABBIT_VERSION=2.16.1
 ENV JACKRABBIT_HOME=/opt/jackrabbit
 RUN mkdir ${JACKRABBIT_HOME}
 WORKDIR ${JACKRABBIT_HOME}
